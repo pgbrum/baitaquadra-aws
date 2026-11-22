@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BaitaQuadra AWS — Agendamento Multi-AZ</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-content">
+      <div>
+        <h1>BaitaQuadra</h1>
+        <p class="subtitle">Reserva de Quadras de Beach Tennis • Arquitetura AWS Multi-AZ</p>
+      </div>
+      <div id="server-badge" class="badge">
+        Carregando servidor...
+      </div>
+    </div>
+  </header>
+
+  <main class="container grid-layout">
+    <section class="card">
+      <h2>Nova Reserva</h2>
+      <form id="reserva-form">
+        <div class="form-group">
+          <label for="cliente">Nome do Jogador</label>
+          <input type="text" id="cliente" placeholder="Ex.: Pedro Brum" required />
+        </div>
+
+        <div class="form-group">
+          <label for="quadra">Quadra</label>
+          <select id="quadra" required>
+            <option value="Quadra 01 - Areia Coberta">Quadra 01 - Areia Coberta</option>
+            <option value="Quadra 02 - Arena Central">Quadra 02 - Arena Central</option>
+            <option value="Quadra 03 - Externa">Quadra 03 - Externa</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="data">Data</label>
+            <input type="date" id="data" required />
+          </div>
+
+          <div class="form-group">
+            <label for="horario">Horário</label>
+            <select id="horario" required>
+              <option value="18:00">18:00</option>
+              <option value="19:00">19:00</option>
+              <option value="20:00">20:00</option>
+              <option value="21:00">21:00</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary">Confirmar Reserva</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="list-header">
+        <h2>Reservas Confirmadas (DynamoDB)</h2>
+        <button id="btn-atualizar" class="btn-secondary" type="button">Atualizar</button>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Jogador</th>
+              <th>Quadra</th>
+              <th>Data / Hora</th>
+              <th>Gravado via</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody id="lista-reservas">
+            <tr>
+              <td colspan="5" class="empty-msg">Carregando registros...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
